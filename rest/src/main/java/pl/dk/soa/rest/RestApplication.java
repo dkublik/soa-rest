@@ -1,4 +1,4 @@
-package pl.dk.soa.service;
+package pl.dk.soa.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
