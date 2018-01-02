@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableScheduling
-public class ServicesApplication {
+public class RestApplication {
 
 	@Bean
 	RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -21,6 +21,6 @@ public class ServicesApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(ServicesApplication.class, args);
+		SpringApplication.run(RestApplication.class, args);
 	}
 }
