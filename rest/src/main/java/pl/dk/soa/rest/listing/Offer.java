@@ -1,4 +1,4 @@
-package pl.dk.soa.rest.web;
+package pl.dk.soa.rest.listing;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
