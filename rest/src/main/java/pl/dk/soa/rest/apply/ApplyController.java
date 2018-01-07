@@ -27,27 +27,27 @@ class ApplyController {
         return new ResponseEntity<>(new AppIdResponse(applicationId), ACCEPTED);
     }
 
-    @PutMapping("/{applicationId}")
+    @PutMapping("{id}")
     @ApiOperation(value = "apply for job with app ID")
-    ResponseEntity<AppIdResponse> applyForJob(@PathVariable String applicationId, @RequestBody Application application) {
-        applications.put(applicationId, application);
-        return new ResponseEntity<>(new AppIdResponse(applicationId), ACCEPTED);
+    ResponseEntity<AppIdResponse> applyForJob(@PathVariable String id, @RequestBody Application application) {
+        applications.put(id, application);
+        return new ResponseEntity<>(new AppIdResponse(id), ACCEPTED);
     }
 
-    @GetMapping("/{applicationId}")
+    @GetMapping("{id}")
     @ApiOperation(value = "show Application")
-    ResponseEntity<Application> showApplication(@PathVariable String applicationId) {
-        Application application = applications.get(applicationId);
+    ResponseEntity<Application> showApplication(@PathVariable String id) {
+        Application application = applications.get(id);
         if (application == null) {
             return new ResponseEntity<>(NOT_FOUND);
         }
         return new ResponseEntity<>(application, OK);
     }
 
-    @DeleteMapping("/{applicationId}")
+    @DeleteMapping("{id}")
     @ApiOperation(value = "show Application")
-    ResponseEntity<Void> deleteApplication(@PathVariable String applicationId) {
-        applications.remove(applicationId);
+    ResponseEntity<Void> deleteApplication(@PathVariable String id) {
+        applications.remove(id);
         return new ResponseEntity<>(NO_CONTENT);
     }
 

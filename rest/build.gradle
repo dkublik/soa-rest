@@ -6,6 +6,7 @@ sourceCompatibility = 1.8
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile 'org.springframework.boot:spring-boot-starter-hateoas'
 	compile('io.springfox:springfox-swagger2')
 	compile('io.springfox:springfox-swagger-ui')
     compile('org.projectlombok:lombok')
