@@ -1,2 +1,2 @@
-include ':rest'
+include ':rest', ':rest-affordances'
 
