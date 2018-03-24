@@ -10,4 +10,9 @@ dependencies {
 	compile('io.springfox:springfox-swagger2')
 	compile('io.springfox:springfox-swagger-ui')
     compile('org.projectlombok:lombok')
+
+    testCompile('org.junit.jupiter:junit-jupiter-api')
+    testCompile('io.rest-assured:rest-assured')
+
+    testRuntime('org.junit.jupiter:junit-jupiter-engine')
 }

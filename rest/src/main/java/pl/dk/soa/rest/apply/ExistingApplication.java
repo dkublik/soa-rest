@@ -1,4 +1,4 @@
-package pl.dk.soa.rest.applyhyper;
+package pl.dk.soa.rest.apply;
 
 import lombok.Getter;
 

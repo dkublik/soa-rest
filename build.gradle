@@ -45,7 +45,7 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M5")
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Finchley.M9")
         }
         dependencies {
             dependency('org.junit.jupiter:junit-jupiter-api:5.1.0')
