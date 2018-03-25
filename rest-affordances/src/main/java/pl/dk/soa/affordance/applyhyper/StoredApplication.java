@@ -1,4 +1,4 @@
-package pl.dk.soa.rest.apply;
+package pl.dk.soa.affordance.applyhyper;
 
 import lombok.Getter;
 
@@ -8,16 +8,16 @@ import static java.time.Instant.now;
 import static java.util.UUID.randomUUID;
 
 @Getter
-public class ExistingApplication extends Application {
+public class StoredApplication extends Application {
 
     private String id;
     private Instant createdTime = now();
 
-    ExistingApplication(Application application) {
+    StoredApplication(Application application) {
         this(randomUUID().toString(), application);
     }
 
-    ExistingApplication(String id, Application application) {
+    StoredApplication(String id, Application application) {
         this.id = id;
         setFirstName(application.getFirstName());
         setLastName(application.getLastName());

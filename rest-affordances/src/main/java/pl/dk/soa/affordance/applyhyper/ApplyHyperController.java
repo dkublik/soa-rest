@@ -14,39 +14,39 @@ import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping(path = "/v3/job-applications", produces = HAL_JSON_VALUE)
-@ExposesResourceFor(ExistingApplication.class)
+@ExposesResourceFor(StoredApplication.class)
 class ApplyHyperController {
 
-    private final ExistingApplicationResourceAssembler resourceAssembler;
+    private final StoredApplicationResourceAssembler resourceAssembler;
 
-    private Map<String, ExistingApplication> applications = new HashMap<>();
+    private Map<String, StoredApplication> applications = new HashMap<>();
 
-    ApplyHyperController(ExistingApplicationResourceAssembler existingApplicationResourceAssembler) {
-        this.resourceAssembler = existingApplicationResourceAssembler;
+    ApplyHyperController(StoredApplicationResourceAssembler storedApplicationResourceAssembler) {
+        this.resourceAssembler = storedApplicationResourceAssembler;
     }
 
     @PostMapping()
-    ResponseEntity<Resource<ExistingApplication>> applyForJob(@RequestBody Application application) {
-        ExistingApplication existingApplication = new ExistingApplication(application);
-        applications.put(existingApplication.getId(), existingApplication);
-        return new ResponseEntity<>(resourceAssembler.toResource(existingApplication), ACCEPTED);
+    ResponseEntity<Resource<StoredApplication>> applyForJob(@RequestBody Application application) {
+        StoredApplication storedApplication = new StoredApplication(application);
+        applications.put(storedApplication.getId(), storedApplication);
+        return new ResponseEntity<>(resourceAssembler.toResource(storedApplication), ACCEPTED);
     }
 
     @PutMapping("{id}")
-    ResponseEntity<Resource<ExistingApplication>> applyForJob(@PathVariable String id, @RequestBody Application application) {
-        ExistingApplication existingApplication = new ExistingApplication(id, application);
-        applications.put(existingApplication.getId(), existingApplication);
-        return new ResponseEntity<>(resourceAssembler.toResource(existingApplication), ACCEPTED);
+    ResponseEntity<Resource<StoredApplication>> applyForJob(@PathVariable String id, @RequestBody Application application) {
+        StoredApplication storedApplication = new StoredApplication(id, application);
+        applications.put(storedApplication.getId(), storedApplication);
+        return new ResponseEntity<>(resourceAssembler.toResource(storedApplication), ACCEPTED);
     }
 
     @GetMapping()
-    ResponseEntity<Resources<ExistingApplication>> showApplications() {
+    ResponseEntity<Resources<StoredApplication>> showApplications() {
         return new ResponseEntity<>(resourceAssembler.toResource(applications.values()), OK);
     }
 
     @GetMapping("{id}")
-    ResponseEntity<Resource<ExistingApplication>> showApplication(@PathVariable String id) {
-        ExistingApplication application = applications.get(id);
+    ResponseEntity<Resource<StoredApplication>> showApplication(@PathVariable String id) {
+        StoredApplication application = applications.get(id);
         if (application == null) {
             return new ResponseEntity<>(NOT_FOUND);
         }

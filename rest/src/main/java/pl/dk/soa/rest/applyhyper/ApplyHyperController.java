@@ -17,43 +17,43 @@ import static org.springframework.http.HttpStatus.*;
 @RestController
 @RequestMapping(path = "/v2/job-applications", produces = HAL_JSON_VALUE)
 @Api(description = "job applications")
-@ExposesResourceFor(ExistingApplication.class)
+@ExposesResourceFor(StoredApplication.class)
 class ApplyHyperController {
 
-    private final ExistingApplicationResourceAssembler resourceAssembler;
+    private final StoredApplicationResourceAssembler resourceAssembler;
 
-    private Map<String, ExistingApplication> applications = new HashMap<>();
+    private Map<String, StoredApplication> applications = new HashMap<>();
 
-    ApplyHyperController(ExistingApplicationResourceAssembler existingApplicationResourceAssembler) {
-        this.resourceAssembler = existingApplicationResourceAssembler;
+    ApplyHyperController(StoredApplicationResourceAssembler storedApplicationResourceAssembler) {
+        this.resourceAssembler = storedApplicationResourceAssembler;
     }
 
     @PostMapping()
     @ApiOperation(value = "apply for job")
-    ResponseEntity<Resource<ExistingApplication>> applyForJob(@RequestBody Application application) {
-        ExistingApplication existingApplication = new ExistingApplication(application);
-        applications.put(existingApplication.getId(), existingApplication);
-        return new ResponseEntity<>(resourceAssembler.toResource(existingApplication), ACCEPTED);
+    ResponseEntity<Resource<StoredApplication>> applyForJob(@RequestBody Application application) {
+        StoredApplication storedApplication = new StoredApplication(application);
+        applications.put(storedApplication.getId(), storedApplication);
+        return new ResponseEntity<>(resourceAssembler.toResource(storedApplication), ACCEPTED);
     }
 
     @PutMapping("{id}")
     @ApiOperation(value = "apply for job with app ID")
-    ResponseEntity<Resource<ExistingApplication>> applyForJob(@PathVariable String id, @RequestBody Application application) {
-        ExistingApplication existingApplication = new ExistingApplication(id, application);
-        applications.put(existingApplication.getId(), existingApplication);
-        return new ResponseEntity<>(resourceAssembler.toResource(existingApplication), ACCEPTED);
+    ResponseEntity<Resource<StoredApplication>> applyForJob(@PathVariable String id, @RequestBody Application application) {
+        StoredApplication storedApplication = new StoredApplication(id, application);
+        applications.put(storedApplication.getId(), storedApplication);
+        return new ResponseEntity<>(resourceAssembler.toResource(storedApplication), ACCEPTED);
     }
 
     @GetMapping()
     @ApiOperation(value = "show Application")
-    ResponseEntity<Resources<ExistingApplication>> showApplications() {
+    ResponseEntity<Resources<StoredApplication>> showApplications() {
         return new ResponseEntity<>(resourceAssembler.toResource(applications.values()), OK);
     }
 
     @GetMapping("{id}")
     @ApiOperation(value = "show Application")
-    ResponseEntity<Resource<ExistingApplication>> showApplication(@PathVariable String id) {
-        ExistingApplication application = applications.get(id);
+    ResponseEntity<Resource<StoredApplication>> showApplication(@PathVariable String id) {
+        StoredApplication application = applications.get(id);
         if (application == null) {
             return new ResponseEntity<>(NOT_FOUND);
         }

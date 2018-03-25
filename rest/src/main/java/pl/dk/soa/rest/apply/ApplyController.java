@@ -16,28 +16,28 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Api(description = "job applications")
 class ApplyController {
 
-    private Map<String, ExistingApplication> applications = new HashMap<>();
+    private Map<String, StoredApplication> applications = new HashMap<>();
 
     @PostMapping()
     @ApiOperation(value = "apply for job")
     ResponseEntity<AppIdResponse> applyForJob(@RequestBody Application application) {
-        ExistingApplication existingApplication = new ExistingApplication(application);
-        applications.put(existingApplication.getId(), existingApplication);
-        return new ResponseEntity<>(new AppIdResponse(existingApplication.getId()), ACCEPTED);
+        StoredApplication storedApplication = new StoredApplication(application);
+        applications.put(storedApplication.getId(), storedApplication);
+        return new ResponseEntity<>(new AppIdResponse(storedApplication.getId()), ACCEPTED);
     }
 
     @PutMapping("{id}")
     @ApiOperation(value = "apply for job with app ID")
     ResponseEntity<AppIdResponse> applyForJob(@PathVariable String id, @RequestBody Application application) {
-        ExistingApplication storedApplication = new ExistingApplication(id, application);
+        StoredApplication storedApplication = new StoredApplication(id, application);
         applications.put(id, storedApplication);
         return new ResponseEntity<>(new AppIdResponse(id), ACCEPTED);
     }
 
     @GetMapping("{id}")
     @ApiOperation(value = "show Application")
-    ResponseEntity<ExistingApplication> showApplication(@PathVariable String id) {
-        ExistingApplication application = applications.get(id);
+    ResponseEntity<StoredApplication> showApplication(@PathVariable String id) {
+        StoredApplication application = applications.get(id);
         if (application == null) {
             return new ResponseEntity<>(NOT_FOUND);
         }
@@ -46,9 +46,9 @@ class ApplyController {
 
     @GetMapping()
     @ApiOperation(value = "show Applications")
-    List<ExistingApplication> showApplications() {
-        List<ExistingApplication> applicationList = new ArrayList<>(applications.values());
-        applicationList.sort(comparing(ExistingApplication::getCreatedTime));
+    List<StoredApplication> showApplications() {
+        List<StoredApplication> applicationList = new ArrayList<>(applications.values());
+        applicationList.sort(comparing(StoredApplication::getCreatedTime));
         return applicationList;
     }
 
