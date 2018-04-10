@@ -1,4 +1,4 @@
-package pl.dk.soa.rest.applyhyper;
+package pl.dk.soa.rest.service;
 
 import lombok.Getter;
 
@@ -13,11 +13,11 @@ public class StoredApplication extends Application {
     private String id;
     private Instant createdTime = now();
 
-    StoredApplication(Application application) {
+    public StoredApplication(Application application) {
         this(randomUUID().toString(), application);
     }
 
-    StoredApplication(String id, Application application) {
+    public StoredApplication(String id, Application application) {
         this.id = id;
         setFirstName(application.getFirstName());
         setLastName(application.getLastName());

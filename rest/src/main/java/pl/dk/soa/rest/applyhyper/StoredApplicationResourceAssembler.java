@@ -2,6 +2,7 @@ package pl.dk.soa.rest.applyhyper;
 
 import org.springframework.hateoas.*;
 import org.springframework.stereotype.Service;
+import pl.dk.soa.rest.service.StoredApplication;
 
 import java.util.Collection;
 

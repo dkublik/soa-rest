@@ -1,4 +1,4 @@
-package pl.dk.soa.rest.applyhyper;
+package pl.dk.soa.rest.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
