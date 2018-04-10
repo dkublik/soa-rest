@@ -10,9 +10,9 @@ import pl.dk.soa.evolution.company.CompanyService;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@RestController
+//@RestController
 @RequestMapping(path = "/v1/all-operations", produces = APPLICATION_JSON_VALUE)
-@Api(description = "all-operations")
+//@Api(description = "all-operations", tags = "bad_design")
 class AllOperationsController {
 
     private final CandidateService candidateService;
@@ -24,7 +24,7 @@ class AllOperationsController {
     }
 
     @PostMapping()
-    @ApiOperation(value = "allOperations")
+   // @ApiOperation(value = "allOperations")
     ResponseEntity allOperations(@RequestBody Operation operation) {
         if (operation instanceof GetCandidateOperation) {
             return candidateService.getCandidate(((GetCandidateOperation)operation).getLogin())
